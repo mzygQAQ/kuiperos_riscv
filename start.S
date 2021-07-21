@@ -19,7 +19,7 @@ _start:
 	neg t0, t0
 	add  sp, sp, t0
 
-	j start_kernel
+	j kmain 
 
 park:
 	wfi
