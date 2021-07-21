@@ -14,7 +14,7 @@ void kmain(void)
 	uart_puts("KuiperOs is booting...\n");
 
     while(1) {
-		delay(1000000);
+		delay(100000);
 		uart_puts("hello world fron kuiperos\n");
 	};
 }

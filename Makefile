@@ -15,6 +15,7 @@ SRCS_ASM = \
 SRCS_C = \
 	kernel.c \
 	uart.c \
+	spinlock.c \
 
 OBJS = $(SRCS_ASM:.S=.o)
 OBJS += $(SRCS_C:.c=.o)
