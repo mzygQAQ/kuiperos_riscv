@@ -15,7 +15,8 @@ _start:
 	# 为每个CPU核心初始化栈
 	slli t0, t0, 10
 	la   sp, stacks + STACK_SIZE
-
+	
+	neg t0, t0
 	add  sp, sp, t0
 
 	j start_kernel
