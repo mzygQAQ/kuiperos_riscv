@@ -25,8 +25,5 @@ void kmain(void)
 	sched_init();
 	schedule();
 
-	while(1) {
-			delay(300000);
-			printf("current_cpu:0 \n");
-	};
+	panic("unreach code");
 }
