@@ -48,14 +48,14 @@ static inline void set_flag(page_t *page, uint8_t flags)
 
 void mem_page_init()
 {	
-	uart_puts("TEXT_START: ");		uart_puts("\n");
-	uart_puts("TEXT_END:   ");		uart_puts("\n");
-	uart_puts("RODATA_START: ");	uart_puts("\n");
-	uart_puts("RODATA_END:   ");	uart_puts("\n");
-	uart_puts("DATA_START: ");		uart_puts("\n");
-	uart_puts("DATA_END:   ");		uart_puts("\n");
-	uart_puts("BSS_END:   ");		uart_puts("\n");
-	uart_puts("BSS_END:   ");		uart_puts("\n");
+	printf("TEXT_START: \n");		
+	printf("TEXT_END:   \n");	
+	printf("RODATA_START: \n");
+	printf("RODATA_END:   \n");
+	printf("DATA_START: \n");
+	printf("DATA_END:   \n");
+	printf("BSS_END:   \n");
+	printf("BSS_END:   \n");
 }
 
 void* mem_page_alloc(int npages)

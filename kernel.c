@@ -14,21 +14,13 @@ static BOOL g_kernel_started_ = FALSE;
 void kmain(void)
 {
 	uart_init();
-	uart_puts("KuiperOs2 booting...\n");
-
-	// test printf
-	printf("hello\n");
-	printf("msg:%s\n", "page fault");
-	printf("rc:%c\n", 65);
-
-
-
+		
+	printf("kuiperos_riscv booting...\n");
 
 	mem_page_init();
 
     while(1) {
 		delay(300000);
-		uart_puts("hello world from kuipero2, current_cpu:");
-		uart_puts("\n");
+		printf("hello world from kuipero2, current_cpu:0 \n");
 	};
 }

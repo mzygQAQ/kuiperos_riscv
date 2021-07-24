@@ -13,9 +13,21 @@ static int _vsnprintf(char *out, size_t n, const char*s, va_list vl)
 		if(format){
 			switch(*s){
 			case 'l':
+				// %ld
+				longarg = TRUE;
 				break;
 			case 'p':
-				break;
+				// NOTE HERE
+				longarg = TRUE;
+				if(out && pos < n){
+					out[pos] = '0';
+				}
+				pos++;
+				if(out && pos < n){
+					out[pos] = 'x';
+				}
+				pos++;
+				// NO break;
 			case 'x':
 				break;
 			case 'd':
@@ -37,11 +49,11 @@ static int _vsnprintf(char *out, size_t n, const char*s, va_list vl)
 				if(out && pos < n){
 					// int or char ?
 					out[pos] = (char)va_arg(vl, int);
-					pos++;
-					longarg = FALSE;
-					format  = FALSE;
-					break;
 				}
+				pos++;
+				longarg = FALSE;
+				format  = FALSE;
+				break;
 			default:
 				break;	
 			}// switch
