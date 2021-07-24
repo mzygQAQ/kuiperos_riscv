@@ -10,4 +10,9 @@ static inline uint64_t r_mhartid()
 	return x;
 }
 
+static inline void w_mscratch(register_t x)
+{
+	asm volatile("csrw mscratch, %0" : : "r" (x));
+}
+
 #endif

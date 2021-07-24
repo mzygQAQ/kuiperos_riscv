@@ -3,32 +3,32 @@ ENTRY( _start )
 
 MEMORY
 {
-    ram     (wxa!ri)    : ORIGIN = 0x80000000, LENGTH = 128M
+    ram     (wxa!ri) : ORIGIN = 0x80000000, LENGTH = 128M
 }
 
 SECTIONS
 {
-	.text: {
+	.text : {
 		PROVIDE(_text_start = .);
 		*(.text .text.*)
 		PROVIDE(_text_end = .);
 	} >ram
 
-	.rodata {
+	.rodata : {
 		PROVIDE(_rodata_start = .);
 		*(.rodata .rodata.*)
 		PROVIDE(_rodata_end = .);
-	} > ram
+	} >ram
 
-	.data: {
-		. = ALIGN(4096)
+	.data : {
+		. = ALIGN(4096);
 		PROVIDE(_data_start = .);
 		*(.sdata .sdata.*)
 		*(.data .data.*)
 		PROVIDE(_data_end = .);
 	} >ram
 
-	.bss {
+	.bss : {
 		PROVIDE(_bss_start = .);
 		*(.sbss .sbss.*)
 		*(.bss .bss.*)
@@ -42,7 +42,3 @@ SECTIONS
 	PROVIDE(_heap_start = _bss_end);
 	PROVIDE(_heap_size  = _memory_end - _heap_start);
 }
-
-
-
-
