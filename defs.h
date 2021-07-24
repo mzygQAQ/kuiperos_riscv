@@ -5,6 +5,7 @@
 
 // uart.c NS16550a
 void uart_init(void);
+void uart_putc(char ch);
 void uart_puts(char *s);
 
 // kernel.c

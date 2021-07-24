@@ -49,7 +49,7 @@ void uart_init(void)
 	uart_write_reg(LCR, lcr | (3 << 0));
 }
 
-static void uart_putc(char ch)
+void uart_putc(char ch)
 {
 	while((uart_read_reg(LSR) & LSR_TX_IDLE) == 0);
 	uart_write_reg(THR, ch);

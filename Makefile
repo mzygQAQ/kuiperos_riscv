@@ -2,7 +2,7 @@ CROSS_COMPILE = riscv64-unknown-linux-gnu-
 CFLAGS = -nostdlib -fno-builtin -march=rv32ima -mabi=ilp32 -g -Wall
 
 QEMU = qemu-system-riscv32
-QFLAGS = -nographic -smp 8 -machine virt -bios none
+QFLAGS = -nographic -smp 1 -machine virt -bios none
 
 GDB = ${CROSS_COMPILE}gdb
 CC = ${CROSS_COMPILE}gcc

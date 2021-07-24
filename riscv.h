@@ -3,7 +3,6 @@
 
 #include "types.h"
 
-
 static inline uint64_t r_mhartid()
 {
 	uint64_t x;
