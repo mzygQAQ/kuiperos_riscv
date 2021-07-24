@@ -11,11 +11,13 @@ OBJDUMP = ${CROSS_COMPILE}objdump
 
 SRCS_ASM = \
 	start.S \
+	mem.S	\
 
 SRCS_C = \
 	kernel.c \
 	mem.c \
 	uart.c \
+	printf.c \
 	spinlock.c \
 	mutex.c \
 	string.c \
@@ -48,7 +50,7 @@ debug: all
 	@echo "Press Ctrl-C and then input 'quit' to exit GDB and QEMU"
 	@echo "-------------------------------------------------------"
 	@${QEMU} ${QFLAGS} -kernel os.elf -s -S &
-	@${GDB} os.elf -q -x ../gdbinit
+	@${GDB} os.elf -q -x ./gdbinit
 
 .PHONY : code
 code: all

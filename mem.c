@@ -3,11 +3,11 @@
 extern uint32_t TEXT_START;
 extern uint32_t TEXT_END;
 
-extern uint32_t DATA_START;
-extern uint32_t DATA_END;
-
 extern uint32_t RODATA_START;
 extern uint32_t RODATA_END;
+
+extern uint32_t DATA_START;
+extern uint32_t DATA_END;
 
 extern uint32_t BSS_START;
 extern uint32_t BSS_END;
@@ -47,8 +47,15 @@ static inline void set_flag(page_t *page, uint8_t flags)
 }
 
 void mem_page_init()
-{
-	
+{	
+	uart_puts("TEXT_START: ");		uart_puts("\n");
+	uart_puts("TEXT_END:   ");		uart_puts("\n");
+	uart_puts("RODATA_START: ");	uart_puts("\n");
+	uart_puts("RODATA_END:   ");	uart_puts("\n");
+	uart_puts("DATA_START: ");		uart_puts("\n");
+	uart_puts("DATA_END:   ");		uart_puts("\n");
+	uart_puts("BSS_END:   ");		uart_puts("\n");
+	uart_puts("BSS_END:   ");		uart_puts("\n");
 }
 
 void* mem_page_alloc(int npages)

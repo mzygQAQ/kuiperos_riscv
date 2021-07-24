@@ -8,6 +8,10 @@ void uart_init(void);
 void uart_putc(char ch);
 void uart_puts(char *s);
 
+// printf.c
+int printf(const char *fmt, ...);
+void panic(char *);
+
 // kernel.c
 void delay(uint64_t n);
 
@@ -16,16 +20,14 @@ void  mem_page_init();
 void* mem_page_alloc(int npages);
 void  mem_page_free(void *p);
 
-// 
-
 // macros
 
 #if defined(__GNUC__) && __GNUC__ >=4
-#define LIKELY(x)	(__builtin_expect((x), 1))
-#define UNLIKELY(x) (__builtin_expect((x), 0))
+#define LIKELY(x)    (__builtin_expect((x), 1))
+#define UNLIKELY(x)  (__builtin_expect((x), 0))
 #else
-#define LIKELY(x)	(x)
-#define UNLIKELY(x)	(x)
+#define LIKELY(x)	 (x)
+#define UNLIKELY(x)	 (x)
 #endif
 
 #endif
