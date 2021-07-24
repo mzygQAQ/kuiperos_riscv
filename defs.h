@@ -11,5 +11,13 @@ void uart_puts(char *s);
 // kernel.c
 void delay(uint64_t n);
 
+// mem.c
+void  mem_page_init();
+void* mem_page_alloc(int npages);
+void  mem_page_free(void *p);
+
+// 
+
+// macros
 
 #endif
