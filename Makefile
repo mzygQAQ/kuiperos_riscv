@@ -16,8 +16,9 @@ SRCS_ASM = \
 
 SRCS_C = \
 	kernel.c \
-	mem.c \
 	uart.c \
+	mem.c \
+	sched.c \
 	printf.c \
 	spinlock.c \
 	mutex.c \

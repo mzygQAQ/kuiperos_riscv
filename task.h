@@ -36,6 +36,9 @@ typedef struct context {
 	register_t t6;	// x31
 } context_t;
 
+void sched_init();
+void schedule();
+
 int task_create(void (*task_routine)(void));
 
 #endif

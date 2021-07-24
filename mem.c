@@ -54,7 +54,7 @@ void mem_page_init()
 	printf("RODATA_END:   \n");
 	printf("DATA_START: \n");
 	printf("DATA_END:   \n");
-	printf("BSS_END:   \n");
+	printf("BSS_START:   \n");
 	printf("BSS_END:   \n");
 }
 
