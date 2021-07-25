@@ -18,6 +18,7 @@ SRCS_C = \
 	kernel.c \
 	uart.c \
 	mem.c \
+	trap.c \
 	sched.c \
 	printf.c \
 	spinlock.c \

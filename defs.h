@@ -20,5 +20,7 @@ void  mem_page_init();
 void* mem_page_alloc(int npages);
 void  mem_page_free(void *p);
 
+// trap.c
+void trap_init();
 
 #endif

@@ -89,4 +89,33 @@ switch_to:
 	
 	# do context switching
 	ret
+
+
+
+.global trap_vector
+# trap vector base address must be 4-byte aligned.
+.align 4
+trap_vector:
+
+	# 保存当前task的上下文
+	csrrw t6, mscratch, t6
+	reg_save t6
+	csrw  mscratch, t6
+	
+	# 调用中断处理函数(这里把epc获取是为了timer中断进程调度准备)
+	csrr a0, mepc
+	csrr a1, mcause
+	call trap_handler
+
+	# a0是trap_handler的返回值
+	# 这里的mepc很可能被改了(schedule的场景)
+	csrw mepc, a0
+
+	# 
+	csrr t6, mscratch
+	reg_restore t6
+	
+	# 返回trap之前的地址
+	mret
+
 .end

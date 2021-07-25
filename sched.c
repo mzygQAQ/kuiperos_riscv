@@ -54,7 +54,7 @@ void task0(void)
 	printf("Task0 Created.\n");
 	while(1){
 		printf("Task0 Running.\n");
-		delay(1000);
+		delay(10000000);
 		task_yield();
 	}
 }
@@ -64,7 +64,7 @@ void task1(void)
 	printf("Task1 Created.\n");
 	while(1){
 		printf("Task1 Running.\n");
-		delay(1000);
+		delay(10000000);
 		task_yield();
 	}
 }
@@ -74,7 +74,15 @@ void task2(void)
 	printf("Task2 Created.\n");
 	while(1){
 		printf("Task2 Running.\n");
-		delay(1000);
+		delay(10000000);
+
+		// trigger exception
+		uint32_t *ptr = NULL;
+		*ptr =1;
+
+		
+		printf("Task2 returned from trap excetion!!!!!!!!\n");
+
 		task_yield();
 	}
 }
