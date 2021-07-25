@@ -1,6 +1,9 @@
 #ifndef __KUIPEROS_TASK_H__
 #define __KUIPEROS_TASK_H__
 
+#include "types.h"
+#include "spinlock.h"
+
 typedef struct context {
 	/* x0 always be 0 */
 	register_t ra;	// x1
@@ -36,9 +39,18 @@ typedef struct context {
 	register_t t6;	// x31
 } context_t;
 
+#define TASK_STACK_SZ 4096
+struct task_struct {
+	// int32_t pid;
+	// spinlock_t lock;
+	context_t ctx;
+	uint8_t stack[TASK_STACK_SZ];
+};
+
 void sched_init();
 void schedule();
 
 int task_create(void (*task_routine)(void));
+void task_yield();
 
 #endif

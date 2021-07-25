@@ -20,4 +20,24 @@ typedef int BOOL;
 #define FALSE 0
 #define NULL ((void*)0)
 
+#define ACCESS_ONCE(x) (*(__volatile__ typeof(x))(&(x)))
+
+#define offsetof(type, member) ((size_t) & (((type *)0)->member))
+
+#define container_of(ptr, type, member)                                        \
+  ({                                                                           \
+    const typeof(((type *)0)->member) *__mptr = (ptr);                         \
+    (type *)((char *)__mptr - offsetof(type, member));                         \
+  })
+
+#if defined(__GNUC__) && __GNUC__ >=4
+#define LIKELY(x)    (__builtin_expect((x), 1))
+#define UNLIKELY(x)  (__builtin_expect((x), 0))
+#else
+#define LIKELY(x)	 (x)
+#define UNLIKELY(x)	 (x)
+#endif
+
+
+
 #endif

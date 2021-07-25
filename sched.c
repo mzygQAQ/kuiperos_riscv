@@ -1,40 +1,81 @@
-#include "defs.h"
 #include "task.h"
 #include "riscv.h"
+#include "defs.h"
+#include "list.h"
+#include "spinlock.h"
 
 // entry.S
 extern void switch_to(context_t *next);
 
-// task0是kuiperos用户台的0号进程,当kuiperos找不到
-// 可以调度的进程时,将会调度0号进程.
+// first user/application in kuiperos/unix
 extern void task0(void);
+extern void task1(void);
+extern void task2(void);
 
-#define STACK_SIZE 4096
-uint8_t task_stack[STACK_SIZE];
-context_t ctx_task;
+#define NMAX_TASK  32
+struct task_struct _tasks[NMAX_TASK];
+uint32_t _task_offset = 0;
+uint32_t _task_exec	  = 0;
 
 void sched_init()
 {
+
+	// clear mscratch
 	w_mscratch(0);
 	
-	// 栈从高地质往低地址
-	ctx_task.sp = (register_t)(task_stack + STACK_SIZE - 1);
-	ctx_task.ra = (register_t)task0;
+	// create process 0
+	task_create(task0);
+	task_create(task1);
+	task_create(task2);
 }
 
 void schedule()
 {
-	context_t *next = &ctx_task;
+	uint32_t next_task_idx = (_task_exec++) % _task_offset;
+	context_t *next = &(_tasks[next_task_idx].ctx);
 	switch_to(next);
 }
 
+int task_create(void (*task_routine)(void))
+{
+	_tasks[_task_offset].ctx.ra = (register_t)task_routine;
+	_tasks[_task_offset].ctx.sp	= (register_t)(_tasks[_task_offset].stack + TASK_STACK_SZ - 1);
+	_task_offset++;
+	return _task_offset - 1;
+}
+
+void task_yield()
+{
+	schedule();
+}
 
 void task0(void)
 {
 	printf("Task0 Created.\n");
 	while(1){
 		printf("Task0 Running.\n");
-		delay(15000000);
+		delay(1000);
+		task_yield();
+	}
+}
+
+void task1(void)
+{
+	printf("Task1 Created.\n");
+	while(1){
+		printf("Task1 Running.\n");
+		delay(1000);
+		task_yield();
+	}
+}
+
+void task2(void)
+{
+	printf("Task2 Created.\n");
+	while(1){
+		printf("Task2 Running.\n");
+		delay(1000);
+		task_yield();
 	}
 }
 
